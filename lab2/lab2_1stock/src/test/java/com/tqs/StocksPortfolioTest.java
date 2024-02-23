@@ -38,6 +38,7 @@ public class StocksPortfolioTest {
         double result = portfolio.getTotalValue();
 
         assertEquals(7608.1, result);
+        verify(stockmarketService, times(2)).lookUpPrice(anyString());
     }
 
 }
