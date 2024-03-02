@@ -28,3 +28,8 @@ _CarManagerService_UnitTest.java_ - testes unitários para a lógica de negócio
 - Testes positivos: listagem e consulta de carros
 - Testes negativos: consulta de carro inexistente
 
+_CarRepositoryTest.java_ - testes às operações CRUD da BD (semelhante ao A* do exercício anterior)
+- Testes positivos: listagem e consulta de carros
+- Testes negativos: consulta de carro inexistente
+
+
