@@ -3,7 +3,7 @@
 ## 3.1 Employee manager
 
 ### Review questions
-Para simplicar, refiro-me aos ficheiros de teste com [letra maiúscula][*]
+Para simplicar, refiro-me aos ficheiros de teste com (letra maiúscula)(*)
 - a) Nos testes com maior encadeamento, verifica-se o tamanho da lista de empregados encontrados e se os empregados encontrados são apenas os esperados (visível nos ficheiros de teste A*, B*, D*, E*).
 - b) No ficheiro de teste B* recorre-se a um Mock para simular o EmployeeRepository e assim evitar acesso à BD (respostas hardcoded que testam apenas a lógica dos métodos).
 - c) 
@@ -17,5 +17,14 @@ Para simplicar, refiro-me aos ficheiros de teste com [letra maiúscula][*]
 
     Os testes aproximam-se mais da realidade à medida que se avança na lista, com custo em performance (3.7s, 5s, 5.5s respetivamente com i5-1135G7).
 
+## 3.2 Car Service
+Depois de criar o código esqueleto Java, comecei com os testes:
 
+_CarController_WithMockServiceTest.java_ - testes com MockMvc para fazer Mock do _CarManagerService_ (semelhante ao C* do exercício anterior)
+- Testes positivos: adição, listagem e consulta de carros
+- Testes negativos: consulta de carro inexistente
+
+_CarManagerService_UnitTest.java_ - testes unitários para a lógica de negócio do serviço (semelhante ao B* do exercício anterior)
+- Testes positivos: listagem e consulta de carros
+- Testes negativos: consulta de carro inexistente
 
