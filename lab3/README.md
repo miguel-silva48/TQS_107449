@@ -33,7 +33,7 @@ _CarRepositoryTest.java_ - testes aos serviços de acesso de dados (semelhante a
 - Testes positivos: listagem e consulta de carros
 - Testes negativos: consulta de carro inexistente
 
-_CarControllerTemplateIT.java - testes de integração para verificar a API, percebi que não lidava com algumas exceções no _CarController_ (semelhante ao E* do exercício anterior)
+_CarControllerTemplateIT.java_ - testes de integração para verificar a API, percebi que não lidava com algumas exceções no _CarController_ (semelhante ao E* do exercício anterior)
 - Testes positivos: adição, listagem e consulta de carros
 - Testes negativos: consulta de carro inexistente
 
@@ -42,4 +42,6 @@ _CarControllerTemplateIT.java - testes de integração para verificar a API, per
 _CarControllerRealIT.java_ - testes de integração com o mysql a correr num container Docker (mantendo a lógica dos testes de integração do exercício anterior)
 - Testes positivos: adição, listagem e consulta de carros
 - Testes negativos: consulta de carro inexistente
+
+Note to self: pasta dos resources estava no local errado e não tinha a dependência do failsafe no pom.xml, o que me fez perder algum tempo a perceber porque é que os testes de integração não estavam a correr.
 
