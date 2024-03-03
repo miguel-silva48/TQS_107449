@@ -20,6 +20,17 @@ public class CarController {
         this.carManagerService = carManagerService;
     }
 
+    @PostMapping("/cars")
+    public ResponseEntity<Car> createCar(@RequestBody Car carToSave) {
+        Car car = null;
+        try {
+            car = carManagerService.saveCar(carToSave);
+            return new ResponseEntity<>(car, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(car, HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping("/cars")
     public List<Car> getAllCars() {
         return carManagerService.getAllCars();
@@ -27,15 +38,12 @@ public class CarController {
 
     @RequestMapping("/cars/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable(value = "id") Long carId) throws ResourceNotFoundException {
-        Car car = carManagerService.getCarDetails(carId)
-                .orElseThrow(() -> new ResourceNotFoundException("Car not found for this id :: " + carId));
-        return ResponseEntity.ok().body(car);
-    }
-
-    @PostMapping("/cars")
-    public ResponseEntity<Car> createCar(@RequestBody Car car) {
-        Car saved = carManagerService.saveCar(car);
-        HttpStatus status = HttpStatus.CREATED;
-        return new ResponseEntity<>(saved, status);
+        Car car = null;
+        try {
+            car = carManagerService.getCarDetails(carId).get();
+            return new ResponseEntity<Car>(car, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Car>(car, HttpStatus.NOT_FOUND);
+        }
     }
 }
