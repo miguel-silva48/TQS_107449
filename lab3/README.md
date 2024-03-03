@@ -17,6 +17,7 @@ Para simplicar, refiro-me aos ficheiros de teste com (letra maiúscula)(*)
 
     Os testes aproximam-se mais da realidade à medida que se avança na lista, com custo em performance (3.7s, 5s, 5.5s respetivamente com i5-1135G7).
 
+
 ## 3.2 Car Service
 Depois de criar o código esqueleto Java, comecei com os testes:
 
@@ -35,3 +36,10 @@ _CarRepositoryTest.java_ - testes aos serviços de acesso de dados (semelhante a
 _CarControllerTemplateIT.java - testes de integração para verificar a API, percebi que não lidava com algumas exceções no _CarController_ (semelhante ao E* do exercício anterior)
 - Testes positivos: adição, listagem e consulta de carros
 - Testes negativos: consulta de carro inexistente
+
+
+## 3.3 Integration tests (mesmo projeto de 3.2)
+_CarControllerRealIT.java_ - testes de integração com o mysql a correr num container Docker (mantendo a lógica dos testes de integração do exercício anterior)
+- Testes positivos: adição, listagem e consulta de carros
+- Testes negativos: consulta de carro inexistente
+
