@@ -39,7 +39,7 @@ class CarController_WithMockServiceTest {
     }
 
     @Test
-    void whenPostCar_thenCreateCar() throws Exception {
+    void whenPostValidCar_thenCreateCar() throws Exception {
         Car car = new Car("Mazda", "Miata");
 
         when(carService.saveCar(any(Car.class))).thenReturn(car);
@@ -54,8 +54,9 @@ class CarController_WithMockServiceTest {
     }
 
     @Test
-    void whenPostInvalidCar_thenBadRequest() throws Exception {
-        Car car = new Car();
+    void whenPostInvalidCar_thenStatus400() throws Exception {
+        Car car = new Car("Mazda", "Miata");
+        car.setMaker(null);
 
         when(carService.saveCar(any(Car.class))).thenReturn(car);
 
@@ -63,9 +64,15 @@ class CarController_WithMockServiceTest {
                 post("/api/cars").contentType(MediaType.APPLICATION_JSON).content(JsonUtils.toJson(car)))
                 .andExpect(status().isBadRequest());
 
-        verify(carService, times(1)).saveCar(any(Car.class));
-    }
+        car.setMaker("Mazda");
+        car.setModel(null);
 
+        mvc.perform(
+                post("/api/cars").contentType(MediaType.APPLICATION_JSON).content(JsonUtils.toJson(car)))
+                .andExpect(status().isBadRequest());
+
+        verify(carService, times(0)).saveCar(any(Car.class));
+    }
 
     @Test
     void givenCars_whenGetCars_thenReturnJsonArray() throws Exception {

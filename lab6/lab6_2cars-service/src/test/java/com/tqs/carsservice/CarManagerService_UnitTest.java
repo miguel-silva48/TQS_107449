@@ -43,6 +43,14 @@ class CarManagerService_UnitTest {
     }
 
     @Test 
+    void givenNewCar_thenCarshouldBeSaved() {
+        Car car = new Car("Mazda", "RX7");
+        when(carRepository.save(car)).thenReturn(car);
+        assertThat(carService.saveCar(car)).isEqualTo(car);
+        verify(carRepository, times(1)).save(car);
+    }
+
+    @Test 
     void whenValidId_thenCarShouldBeFound() {
         Long id = 1L;
         Car found = carService.getCarDetails(id).get();

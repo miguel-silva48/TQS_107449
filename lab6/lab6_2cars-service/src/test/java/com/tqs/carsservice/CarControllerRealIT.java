@@ -13,8 +13,7 @@ import com.tqs.carsservice.data.CarRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.beans.Transient;
-
+import java.util.Optional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:application-integrationtest.properties")
@@ -42,12 +41,11 @@ class CarControllerRealIT {
     }
 
     @Test
-    void whenInvalidInput_thenBadRequest() {
-        Car car = new Car("Porsche", "Taycan");
-        car.setMaker(null);
-        assertThrows(IllegalArgumentException.class, () -> {
-            restTemplate.postForEntity("/api/cars", car, Car.class);
-        });
+    void whenInvalidInput_thenStatus400() {
+        Car car1 = new Car("Porsche", null);
+        restTemplate.postForEntity("/api/cars", car1, Car.class);
+        Car car2 = new Car(null, "Taycan");
+        restTemplate.postForEntity("/api/cars", car2, Car.class);
         assertThat(repository.findAll()).isEmpty();
     }
 
@@ -75,10 +73,11 @@ class CarControllerRealIT {
 
     @Test
     void givenCars_whenGetCarByInvalidId_thenStatus404() {
-        Car car1 = new Car("Porsche", "Taycan");
-        repository.saveAndFlush(car1);
+        Car car = new Car("Porsche", "Taycan");
+        car.setCarId(1L);
+        repository.saveAndFlush(car);
 
-        Car found = restTemplate.getForObject("/api/cars/2", Car.class);
+        Optional<Car> found = restTemplate.getForObject("/api/cars/4", Optional.class);
         assertThat(found).isNull();
     }
 }

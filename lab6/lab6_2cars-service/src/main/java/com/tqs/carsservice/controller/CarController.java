@@ -24,12 +24,11 @@ public class CarController {
     @PostMapping("/cars")
     public ResponseEntity<Car> createCar(@RequestBody Car carToSave) {
         Car car = null;
-        try {
-            car = carManagerService.saveCar(carToSave);
-            return new ResponseEntity<>(car, HttpStatus.CREATED);
-        } catch (Exception e) {
+        if (carToSave.getMaker() == null || carToSave.getModel() == null) {
             return new ResponseEntity<>(car, HttpStatus.BAD_REQUEST);
         }
+        car = carManagerService.saveCar(carToSave);
+        return new ResponseEntity<>(car, HttpStatus.CREATED);
     }
 
     @GetMapping("/cars")
@@ -40,6 +39,7 @@ public class CarController {
     @GetMapping("/cars/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable(value = "id") Long carId) {
         Car car = null;
+        try {
             Optional<Car> optionalCar = carManagerService.getCarDetails(carId);
             if (optionalCar.isPresent()) {
                 car = optionalCar.get();
@@ -47,5 +47,8 @@ public class CarController {
             } else {
                 return new ResponseEntity<>(car, HttpStatus.NOT_FOUND);
             }
+        } catch (Exception e) {
+            return new ResponseEntity<>(car, HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -52,6 +52,17 @@ class CarControllerTemplateIT {
         assertThat(found).extracting(Car::getMaker).containsOnly("Porsche");
     }
 
+    @Test 
+    void whenInvalidInput_thenStatus400() {
+        Car car1 = new Car("Porsche", null);
+        ResponseEntity<Car> response = restTemplate.postForEntity("/api/cars", car1, Car.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        Car car2 = new Car(null, "Taycan");
+        ResponseEntity<Car> response2 = restTemplate.postForEntity("/api/cars", car2, Car.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(repository.findAll()).isEmpty();
+    }
+
     @Test
     void givenCars_whenGetCarById_thenStatus200() {
         Car car1 = new Car("Porsche", "Taycan");

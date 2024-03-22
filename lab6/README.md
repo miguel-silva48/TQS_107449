@@ -19,16 +19,19 @@ A technical debt correspondia a 27 minutos - demoraria a um programador cerca de
 
 A análise do SonarQube revelou o seguinte:
 
-![SonarQube cars-service](screenshots/lab6_2before.png)
+![SonarQube cars-service antes](screenshots/lab6_2before.png)
 
 Ambos os Security Hotspots devem-se a ter usado @RequestMapping ao invés de @GetMapping no CarController.java.
 
-//TODO corrigir alguma cena
+- Adicionei teste para o método `saveCar` 
+- Tive de modificar a lógica do controlador
+- Acrescentei testes para inserção de um carro inválido (que não tinha antes)
 
+Resultados abaixo:
 
-IMPORTANTE: Tive problemas a correr (devem ser da versão do Spring Boot, logo o comando aqui foi diferente).
+![SonarQube cars-service depois](screenshots/lab6_2after.png)
 
-Para correr e ir ao dashboard do SonarQube, basta correr o comando `mvn  sonar:sonar   -Dsonar.projectKey=carsservice   -Dsonar.projectName='carsservice'   -Dsonar.host.url=http://127.0.0.1:9000   -Dsonar.token=sqp_225c70f3cc776754690324f7437739b58595734d` e aceder a `http://localhost:9000/`.
+Para correr e ir ao dashboard do SonarQube, basta correr o comando `mvn clean verify sonar:sonar   -Dsonar.projectKey=carsservice   -Dsonar.projectName='carsservice'   -Dsonar.host.url=http://127.0.0.1:9000   -Dsonar.token=sqp_225c70f3cc776754690324f7437739b58595734d   -DskipITs=false` e aceder a `http://localhost:9000/`.
 O token expira em 30 dias.
 
 ## 6.3 IES Project
