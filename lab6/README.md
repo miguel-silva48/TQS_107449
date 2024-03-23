@@ -36,4 +36,13 @@ O token expira em 30 dias.
 
 ## 6.3 IES Project
 
-//TODO 
+Ao utilizar o projeto de IES _KeyUsageProfiler_ foram encontrados os seguintes issues:
+
+![SonarQube ies-project](screenshots/lab6_3.png)
+
+- Como seria de esperar a code coverage é de 0% (já que não haviam testes no projeto)
+- No que toca ao esforço necessário para os corrigir, o Sonar Qube estima que fosse de 1 dia e 5 horas.
+- Os issues de reliability estão relacionados com os imports não corresponderem a uma regex ideal, exceções de Null Pointer e alguns prints que restaram (em vez de logs).
+- Os issues de alto impacto de maintainability são apenas 1 constante que não está capitalizada e 3 atributos que não são serializáveis (apenas o objeto do qual fazem parte o é).
+
+Nota Adicional: não foi definido nada em grupo, mas poderia ser benéfico uma cobertura superior ao standard de 80% e também manter em 0 os problemas de segurança, visto que era uma aplicação com um caso de uso empresarial (medição de desempenho de cada colaborador na equipa)
