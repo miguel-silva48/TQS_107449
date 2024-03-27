@@ -78,5 +78,13 @@ public class DataInitializer implements CommandLineRunner {
 
         Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9, trip10, trip11, trip12, trip13, trip14, trip15, trip16, trip17)
             .forEach(trip -> tripService.saveTrip(trip));
+
+        //Create passengers    
+        Passenger p1 = new Passenger("João Silva", "jsilva@ua.pt");
+        Passenger p2 = new Passenger("Maria Santos", "msantos@ua.pt");
+        
+        //Create reservations
+        Reservation r1 = new Reservation(trip1, p1, 2);
+        Reservation r2 = new Reservation(trip2, p2, 1);
     }
 }

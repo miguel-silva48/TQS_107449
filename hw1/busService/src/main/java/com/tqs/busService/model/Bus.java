@@ -10,7 +10,8 @@ public class Bus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long busId;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private static int baseNumber = 100;
+
     private int number;
 
     private String plate;
@@ -20,6 +21,7 @@ public class Bus {
     public Bus(String plate, int capacity) {
         this.plate = plate;
         this.capacity = capacity;
+        this.number = baseNumber++;
     }
 
     public String getPlate() {

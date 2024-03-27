@@ -11,7 +11,8 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripId;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private static int baseNumber = 1000;
+
     private int number;
 
     private City origin;
@@ -25,11 +26,16 @@ public class Trip {
     private int price;
 
     public Trip(City origin, City destination, LocalDate date, Bus bus, int price) {
+        this.number = baseNumber++;
         this.origin = origin;
         this.destination = destination;
         this.date = date;
         this.bus = bus;
         this.price = price;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public City getOrigin() {

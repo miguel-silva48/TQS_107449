@@ -2,6 +2,8 @@ package com.tqs.busService.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "reservations")
 public class Reservation {
@@ -16,7 +18,6 @@ public class Reservation {
 
     private int numSeats = 1;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String token;
 
     public Reservation(Trip trip, Passenger passenger, int numSeats) {
@@ -25,6 +26,11 @@ public class Reservation {
         if (numSeats > 1) {
             this.numSeats = numSeats;
         }
+        this.token = generateUniqueToken();
+    }
+
+    private String generateUniqueToken() {
+        return UUID.randomUUID().toString();
     }
 
     public Trip getTrip() {
