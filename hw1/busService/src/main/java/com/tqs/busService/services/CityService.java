@@ -15,11 +15,15 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> getAllCities() {
-        return cityRepository.findAllCities();
+    public boolean saveCity(City city) {
+        return cityRepository.saveCity(city);
     }
-
+    
     public City getCityByName(String name) {
         return cityRepository.findCityByName(name);
+    }
+
+    public List<City> getAllCities() {
+        return cityRepository.findAllCities();
     }
 }

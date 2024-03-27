@@ -1,7 +1,7 @@
 package com.tqs.busService.model;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "trips")
@@ -11,17 +11,20 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tripId;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int number;
+
     private City origin;
 
     private City destination;
 
-    private Date date;
+    private LocalDate date;
 
     private Bus bus;
 
     private int price;
 
-    public Trip(City origin, City destination, Date date, Bus bus, int price) {
+    public Trip(City origin, City destination, LocalDate date, Bus bus, int price) {
         this.origin = origin;
         this.destination = destination;
         this.date = date;
@@ -37,7 +40,7 @@ public class Trip {
         return destination;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

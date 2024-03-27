@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.tqs.busService.model.Trip;
 
 import java.util.List;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Repository
 public interface TripRepository extends JpaRepository<Trip, Long> {
@@ -14,7 +14,11 @@ public interface TripRepository extends JpaRepository<Trip, Long> {
     //public List<Trip> findTripByOriginName(String originName);
     //public List<Trip> findTripByDestinationName(String destinationName);
 
+    public boolean saveTrip(Trip trip);
+
+    public Trip getTripByCitiesAndNumberAndBus(String originCity, String destinationCity, int tripNumber, int busNumber);
+
     public List<Trip> findTripsByBothCities(String originCity, String destinationCity);
 
-    public List<Trip> findTripsByDate(Date date);
+    public List<Trip> findTripsByDate(LocalDate date);
 }

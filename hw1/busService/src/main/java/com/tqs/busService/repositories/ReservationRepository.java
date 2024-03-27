@@ -11,9 +11,7 @@ import com.tqs.busService.model.Passenger;
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     public String createReservation(Trip trip, Passenger passenger);
 
-    public Reservation cancelReservationByToken(String token);
-
     public Reservation findReservationByToken(String token);
-
-    //TODO get reservation details?? Ou retorno no find?
+    
+    public boolean cancelReservationByToken(String token);
 }

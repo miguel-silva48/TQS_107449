@@ -14,12 +14,17 @@ public class Reservation {
 
     private Passenger passenger;
 
-    @GeneratedValue(strategy = GenerationType.UUID)
+    private int numSeats = 1;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String token;
 
-    public Reservation(Trip trip, Passenger passenger) {
+    public Reservation(Trip trip, Passenger passenger, int numSeats) {
         this.trip = trip;
         this.passenger = passenger;
+        if (numSeats > 1) {
+            this.numSeats = numSeats;
+        }
     }
 
     public Trip getTrip() {
@@ -32,5 +37,9 @@ public class Reservation {
 
     public String getToken() {
         return token;
+    }
+
+    public int getNumSeats() {
+        return numSeats;
     }
 }

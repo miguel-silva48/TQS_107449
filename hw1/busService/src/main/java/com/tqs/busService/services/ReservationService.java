@@ -19,7 +19,7 @@ public class ReservationService {
         return reservationRepository.createReservation(trip, passenger);
     }
 
-    public Reservation cancelReservationByToken(String token) {
+    public boolean cancelReservationByToken(String token) {
         return reservationRepository.cancelReservationByToken(token);
     }
 

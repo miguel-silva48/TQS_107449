@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface CityRepository extends JpaRepository<City, Long>{
+    public boolean saveCity(City city);
+
     public City findCityByName(String name);
 
     public List<City> findAllCities();

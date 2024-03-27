@@ -10,6 +10,9 @@ public class Bus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long busId;
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int number;
+
     private String plate;
 
     private int capacity;
@@ -25,5 +28,9 @@ public class Bus {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
