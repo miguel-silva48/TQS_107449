@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "2b1e783c-f2aa-4780-9e76-8b2592aa07e7",
+		"name": "TQS_BusService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30670219"
+	},
+	"item": [
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "List All Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Make Reservation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservation?origin=Porto&destination=Aveiro&tripNumber=1002&numSeats=5&passengerName=Maria Santos&passengerEmail=msantos@ua.pt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Porto"
+								},
+								{
+									"key": "destination",
+									"value": "Aveiro"
+								},
+								{
+									"key": "tripNumber",
+									"value": "1002"
+								},
+								{
+									"key": "numSeats",
+									"value": "5"
+								},
+								{
+									"key": "passengerName",
+									"value": "Maria Santos"
+								},
+								{
+									"key": "passengerEmail",
+									"value": "msantos@ua.pt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Reservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservation?token=35617e87-0314-4283-93bc-6f382cd22c8f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "35617e87-0314-4283-93bc-6f382cd22c8f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Reservation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservation?token=35617e87-0314-4283-93bc-6f382cd22c8f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "35617e87-0314-4283-93bc-6f382cd22c8f"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trip",
+			"item": [
+				{
+					"name": "List Trips for Both Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/trips?origin=Porto&destination=Aveiro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trips"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Porto"
+								},
+								{
+									"key": "destination",
+									"value": "Aveiro"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
