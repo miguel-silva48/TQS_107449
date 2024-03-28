@@ -15,15 +15,24 @@ public class Trip {
 
     private int number;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "origin_id", nullable = false)
     private City origin;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "destination_id", nullable = false)
     private City destination;
 
     private LocalDate date;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "bus_id", nullable = false)
     private Bus bus;
 
     private int price;
+
+    public Trip() {
+    }
 
     public Trip(City origin, City destination, LocalDate date, Bus bus, int price) {
         this.number = baseNumber++;

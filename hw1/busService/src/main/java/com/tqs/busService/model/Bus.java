@@ -18,6 +18,9 @@ public class Bus {
 
     private int capacity;
 
+    public Bus() {
+    }
+
     public Bus(String plate, int capacity) {
         this.plate = plate;
         this.capacity = capacity;

@@ -12,13 +12,20 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "passenger_id", nullable = false)
     private Passenger passenger;
 
     private int numSeats = 1;
 
     private String token;
+
+    public Reservation() {
+    }
 
     public Reservation(Trip trip, Passenger passenger, int numSeats) {
         this.trip = trip;

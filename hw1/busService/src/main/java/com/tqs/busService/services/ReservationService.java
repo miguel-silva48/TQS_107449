@@ -15,15 +15,16 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public String createReservation(Trip trip, Passenger passenger) {
-        return reservationRepository.createReservation(trip, passenger);
-    }
-
-    public boolean cancelReservationByToken(String token) {
-        return reservationRepository.cancelReservationByToken(token);
+    public Reservation createReservation(Trip trip, Passenger passenger, int numSeats) {
+        Reservation reservation = new Reservation(trip, passenger, numSeats);
+        return reservationRepository.save(reservation);
     }
 
     public Reservation findReservationByToken(String token) {
-        return reservationRepository.findReservationByToken(token);
+        return reservationRepository.findByToken(token);
+    }
+
+    public void cancelReservationByToken(String token) {
+        reservationRepository.deleteByToken(token);
     }
 }

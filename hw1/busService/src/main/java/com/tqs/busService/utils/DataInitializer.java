@@ -14,10 +14,12 @@ public class DataInitializer implements CommandLineRunner {
     
     private final CityService cityService;
     private final TripService tripService;
+    private final BusService busService;
 
-    public DataInitializer(CityService cityService, TripService tripService) {
+    public DataInitializer(CityService cityService, TripService tripService, BusService busService) {
         this.cityService = cityService;
         this.tripService = tripService;
+        this.busService = busService;
     }
 
     @Override
@@ -35,7 +37,7 @@ public class DataInitializer implements CommandLineRunner {
         Arrays.asList(porto, lisboa, braga, aveiro, coimbra, faro, viseu)
             .forEach(city -> cityService.saveCity(city));
 
-        //Create buses
+        //Create and save buses
         Bus bus1 = new Bus("BUS-01", 27);
         Bus bus2 = new Bus("BUS-02", 36);
         Bus bus3 = new Bus("BUS-03", 40);
@@ -46,6 +48,9 @@ public class DataInitializer implements CommandLineRunner {
         Bus bus8 = new Bus("BUS-08", 44);
         Bus bus9 = new Bus("BUS-09", 23);
         Bus bus10 = new Bus("BUS-10", 62);
+
+        Arrays.asList(bus1, bus2, bus3, bus4, bus5, bus6, bus7, bus8, bus9, bus10)
+            .forEach(bus -> busService.saveBus(bus));
 
         //Create dates
         LocalDate date1 = LocalDate.of(2024, 5, 10);
@@ -79,6 +84,8 @@ public class DataInitializer implements CommandLineRunner {
         Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9, trip10, trip11, trip12, trip13, trip14, trip15, trip16, trip17)
             .forEach(trip -> tripService.saveTrip(trip));
 
+
+        //TODO maybe remove later
         //Create passengers    
         Passenger p1 = new Passenger("João Silva", "jsilva@ua.pt");
         Passenger p2 = new Passenger("Maria Santos", "msantos@ua.pt");

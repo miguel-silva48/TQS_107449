@@ -3,6 +3,7 @@ package com.tqs.busService.services;
 import org.springframework.stereotype.Service;
 
 import com.tqs.busService.model.Trip;
+import com.tqs.busService.model.City;
 import com.tqs.busService.repositories.TripRepository;
 
 import java.util.List;
@@ -16,19 +17,19 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
-    public boolean saveTrip(Trip trip) {
-        return tripRepository.saveTrip(trip);
+    public Trip saveTrip(Trip trip) {
+        return tripRepository.save(trip);
     }
 
-    public Trip getTripByCitiesAndNumberAndBus(String originCity, String destinationCity, int tripNumber, int busNumber) {
-        return tripRepository.getTripByCitiesAndNumberAndBus(originCity, destinationCity, tripNumber, busNumber);
+    public Trip getTripByCitiesAndNumber(City originCity, City destinationCity, int tripNumber) {
+        return tripRepository.findByOriginAndDestinationAndNumber(originCity, destinationCity, tripNumber);
     }
 
-    public List<Trip> getTripsByBothCities(String originCity, String destinationCity) {
-        return tripRepository.findTripsByBothCities(originCity, destinationCity);
+    public List<Trip> getTripsByBothCities(City originCity, City destinationCity) {
+        return tripRepository.findByOriginAndDestination(originCity, destinationCity);
     }
 
     public List<Trip> getTripsByDate(LocalDate date) {
-        return tripRepository.findTripsByDate(date);
+        return tripRepository.findByDate(date);
     }
 }
